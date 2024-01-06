@@ -17,14 +17,15 @@
 // 时间复杂度：O(n);
 // 空间复杂度：O(1);
 //
-int missingNumber(int* nums, int numsSize) {
-    int sum = 0;
-    int i = 0;
-    for (i = 0; i < numsSize; i++)
-        sum += nums[i];
-
-    return numsSize * (numsSize + 1) / 2 - sum;     //用了等差数列求和公式
-}
+//int missingNumber(int* nums, int numsSize) {
+//    assert(nums);
+//    int sum = 0;
+//    int i = 0;
+//    for (i = 0; i < numsSize; i++)
+//        sum += nums[i];
+//
+//    return numsSize * (numsSize + 1) / 2 - sum;     //用了等差数列求和公式
+//}
 
 //思路二：对数组快速排序，相邻两项相差不等于1，就是消失的数字
 // 时间复杂度：O( N*logN );
@@ -38,6 +39,7 @@ int missingNumber(int* nums, int numsSize) {
 // 空间复杂度：O(N);
 //
 //int missingNumber(int* nums, int numsSize) {
+//    assert(nums);
 //    int hash[10000] = { 0 };
 //    int i = 0;
 //    for (i = 0; i < numsSize; i++)
@@ -52,6 +54,7 @@ int missingNumber(int* nums, int numsSize) {
 
 //思路四：利用位运算 ^ （异或）的性质
 //int missingNumber(int* nums, int numsSize) {
+//    assert(nums);
 //    int x = 0;
 //    int i = 0;
 // 
@@ -65,3 +68,5 @@ int missingNumber(int* nums, int numsSize) {
 //
 //    return x;
 //}
+
+//标签：位运算、数组、哈希表、数学、排序
