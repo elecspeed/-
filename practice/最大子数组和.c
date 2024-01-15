@@ -23,10 +23,47 @@
 // }
 //
 
-//思路一：暴力穷举。
-// 时间复杂度：
-// 空间复杂度：
+//思路一：暴力穷举。算出每一种可能组合的值，只留最大值
+// 时间复杂度：O(N^2);
+// 空间复杂度：O(1);
 //
-int maxSubArray(int* nums, int numsSize) {
-    
-}
+//int maxSubArray(int* nums, int numsSize) {
+//    int max, this;
+//    int i, j;
+//    max = INT_MIN;
+//    for (i = 0; i < numsSize; i++)
+//    {
+//        this = 0;
+//        for (j = i; j < numsSize; j++)
+//        {
+//            this += nums[j];
+//
+//            if (max < this)
+//                max = this;
+//        }
+//    }
+//    return max;
+//}
+
+//思路二：联机算法。
+// 时间复杂度：O(N);
+// 空间复杂度：O(1);
+//
+//int maxSubArray(int* nums, int numsSize) {
+//    int max, this;
+//    max = INT_MIN;
+//    this = 0;
+//
+//    int i;
+//    for (i = 0; i < numsSize; i++)
+//    {
+//        this += nums[i];
+//        if (max < this)
+//            max = this;
+//        if (this < 0)
+//            this = 0;
+//    }
+//    return max;
+//}
+
+//思路三：分治。
