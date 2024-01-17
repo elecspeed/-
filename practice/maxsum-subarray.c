@@ -15,8 +15,8 @@
 // 输出23
 // 
 // 提示：
-// 1 <= nums.length <= 105
-// -104 <= nums[i] <= 104
+// 1 <= nums.length <= 10^5
+// -10^4 <= nums[i] <= 10^4
 // 
 // int maxSubArray(int* nums, int numsSize) {
 //     
@@ -117,7 +117,6 @@
 //
 //    return max3(max_right, max_left, max_mid);
 //}
-<<<<<<< HEAD
 
 //官方题解
 //一：动态规划
@@ -161,5 +160,4 @@
 //    return get(nums, 0, numsSize - 1).mSum;
 //}
 
-=======
->>>>>>> 0aac05dea1964a31c1a61263770f8a26748c64fa
+//标签：数组、分治、动态规划
