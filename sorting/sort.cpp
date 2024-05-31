@@ -1,5 +1,4 @@
-#include <iostream>
-using namespace std;
+#include "sort.h"
 
 void selection_sort(int *array, int nums)
 {
@@ -67,7 +66,7 @@ void quick_sort(int *array, int nums)
     if (nums < 2)
         return;
     // 对于小数组，快排不如插入排序
-    if (nums <= 8)
+    if (nums <= 10)
     {
         insertion_sort(array, nums);
         return;
@@ -78,7 +77,7 @@ void quick_sort(int *array, int nums)
     if (array[l] > array[mid])
         swap(array[l], array[mid]);
     if (array[mid] > array[r])
-        swap(array[l], array[mid]);
+        swap(array[mid], array[r]);
     if (array[l] > array[mid])
         swap(array[l], array[mid]);
     int median = array[mid];
@@ -102,10 +101,78 @@ void quick_sort(int *array, int nums)
     // 递归上述过程即可排序
     quick_sort(array, l);
     quick_sort(array + l + 1, nums - l - 1);
+
+    // 另一种简单实现
+    // if (nums < 2)
+    //     return;
+    // if (nums <= 8)
+    // {
+    //     insertion_sort(array, nums);
+    //     return;
+    // }
+    // int l = -1, r = nums,
+    //     mid = array[(l + r) >> 1]; // 直接以中心元素为中间元
+    // while (l < r)
+    // {
+    //     while (array[++l] < mid)
+    //         ;
+    //     while (array[--r] > mid)
+    //         ;
+    //     if (l < r)
+    //         swap(array[l], array[r]);
+    // }
+    // quick_sort(array, l);
+    // quick_sort(array + l, nums - l);
 }
+void shell_sort(int *array, int nums)
+{
+    // 希尔排序
+    // 对间隔 Increment 的元素进行插入排序
+    // 相当于插入排序的升级版
+    //
+    // 插入排序对于小数组是很快的，
+    // 但对于大数组，
+    // 时间都花在了数组挪动上面。
+    // 相比之下，
+    // 希尔排序则是跳跃式地“插入”，
+    // 看似循环次数变多了，
+    // 其实总的“挪动”次数变少了。
+    // 数组越大，希尔排序的优势越明显。
+    //
+    // Increment 只要先大后小，最后为 1 即可。
+    //
+    // > 一开始我以为 Increment 最后为 1，
+    // > 不就变成插入排序了吗？
+    // > 那希尔排序还不如插入排序？
+    // > 后面才想明白。
 
-void shell_sort(int *array, int nums);
-
+    int i, j, k, Increment, tmp;
+    for (i = 30; i >= 0; --i)
+    {
+        Increment = pow(2, i + 1) - 1;
+        for (j = Increment; j < nums; ++j)
+        {
+            tmp = array[j];
+            for (k = j;
+                 k >= Increment && tmp < array[k - Increment];
+                 k -= Increment)
+                array[k] = array[k - Increment];
+            array[k] = tmp;
+        }
+    }
+    // Increment 的选取决定了希尔排序的时间复杂度
+    // 有两种选取
+    // 1.时间复杂度 O[N^(4/5)]
+    //   1, 3, 7, ..., 2^k - 1
+    // 2.时间复杂度 O[N^(7/6)]
+    //   1, 5, 19, 41, 109,
+    //   ...,
+    //   9*(4^k - 2^k) + 1 或 4^i - 3*2^i + 1
+    //
+    // 对于 N > 10^4，希尔排序依然表现得很好。
+    // 而且编程简单，
+    // 使得其和快速排序成为对较大数据经常选用的算法
+}
 void merge_sort(int *array, int nums);
 
 void heap_sort(int *array, int nums);
