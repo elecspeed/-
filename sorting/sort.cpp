@@ -169,12 +169,52 @@ void shell_sort(int *array, int nums)
     //   ...,
     //   9*(4^k - 2^k) + 1 或 4^i - 3*2^i + 1
     //
-    // 对于 N > 10^4，希尔排序依然表现得很好。
+    // 对于 10^4 < N < 10^5，希尔排序依然表现得很好。
     // 而且编程简单，
-    // 使得其和快速排序成为对较大数据经常选用的算法
+    // 使得其成为对较大数据经常选用的算法之一
 }
-void merge_sort(int *array, int nums);
+const int N = 100010;
+int tmp[N];
+void merge_sort(int *array, int nums)
+{
+    // 归并排序
+    // 将两段已经有序的数组合并成一个临时数组。
+    // 具体来说就是，
+    // 将 A[] 和 B[] 中的较小元素依次拷贝到 tmp[]。
+    // 因为 A[],B[] 已经有序，
+    // 所以可以在线性时间内完成。
+    // 最后再将 tmp[] 中的元素拷贝回来即可。
+    //
+    // 那 A[],B[] 不是有序的怎么办？
+    // 那就先对 A[] 和 B[] 进行归并排序，
+    // 递归求解。
 
+    if (nums < 2)
+        return;
+    int mid = nums >> 1;
+    merge_sort(array, mid);
+    merge_sort(array + mid, nums - mid);
+
+    int i = 0, l = 0, r = mid;
+    while (l < mid && r < nums)
+        if (array[l] <= array[r])
+            tmp[i++] = array[l++];
+        else
+            tmp[i++] = array[r++];
+    while (l < mid)
+        tmp[i++] = array[l++];
+    while (r < nums)
+        tmp[i++] = array[r++];
+
+    for (i = 0, l = 0; i < nums; ++i, ++l)
+        array[i] = tmp[l];
+    //
+    // 注意临时数组不能在递归函数内。
+    // 这里用的是全局范围的数组，
+    // 也可以使用驱动程序，
+    // 驱动程序调用归并排序，
+    // 并把动态数组 tmp[] 传参进去。
+}
 void heap_sort(int *array, int nums);
 
 void radix_sort(int *array, int nums);
