@@ -219,6 +219,30 @@ void heap_sort(int *array, int nums);
 
 void radix_sort(int *array, int nums);
 
-void bucket_sort(int *array, int nums);
+void bucket_sort(int *array, int nums)
+{
+    // 桶排序
+    // 要求数据只能由正整数组成，数据之间最大差值 <M。
+    // 其中，M 为数组能够一次开出的最大范围。
+    // 原因与算法本身有关。
+    //
+    // 当然了，最大差值可以 >M，数据也可以是负数，
+    // 不过这需要开多个数组，
+    // 并进行一些改变。
+    // 对小内存的环境不友好。
+
+    int i, j = 0;
+    for (i = 0; i < nums; ++i)
+        ++tmp[array[i]];
+    for (i = 0; i < N && nums > 0; i++)
+        while (tmp[i])
+        {
+            array[j++] = i;
+            --tmp[i];
+        }
+
+    // 可以看出时间复杂度为 O(M + N)
+    // M 为最大差值，N 为数据个数
+}
 
 void odd_even_sort(int *array, int nums);
