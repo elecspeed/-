@@ -21,7 +21,6 @@ struct Node
 
 // 接口函数
 void Init(List l);
-void MakeEmpty(List l);
 int IsEmpty(List l);
 int IsLast(List l, Position p);
 void Display(List l);
@@ -38,10 +37,10 @@ Position FindPrevious(List l, ElementType e);
 int Iscontained(List l, ElementType e);
 void Insert(List l, Position p, ElementType e);
 int Delete_by_value(List l, ElementType e);
-ElementType Delete_by_pos(List l, Position p);
-void Modify(List l, Position p, ElementType e);
+void Delete_by_pos(List l, Position p);
+void Modify(List l, Position p, ElementType new);
 void sort(List l);
-void DeleteList(List l);
-ElementType retrieve(List l, Position p);
+void MakeEmpty(List l);
+void DestroyList(List l);
 
-#endif
+#endif /* LinkedList.h */
