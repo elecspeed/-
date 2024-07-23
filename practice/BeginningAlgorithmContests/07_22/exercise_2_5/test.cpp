@@ -19,9 +19,32 @@ int main()
     int a, b, c, count = 0;
     while (scanf("%d%d%d", &a, &b, &c) == 3)
     {
+        // 结束标记
         if (a == 0 && b == 0 && c == 0)
             break;
-        double res = 1.0 * a / b;
+        // 输出格式
+        printf("Case %d: ", ++count);
+
+        // 算法（模拟除法过程）
+        printf("%d.", a / b);
+        a %= b;
+        for (int i = 0; i < c - 1; i++)
+        {
+            a *= 10;
+            printf("%d", a / b);
+            a %= b;
+        }
+        // 判断小数点后 c+1 位要不要进 1
+        a *= 10;
+        int lastDigit = a / b; // 精确度的最后一位
+        a %= b;
+        a *= 10;
+        if (a / b < 5)
+            // 四舍
+            printf("%d\n", lastDigit);
+        else
+            // 五入
+            printf("%d\n", lastDigit + 1);
     }
     return 0;
 }
